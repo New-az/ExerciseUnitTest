@@ -26,9 +26,17 @@ public class ArrayMathTest {
 		assertEquals( 0.0, ArrayMath.dotProduct(x, y), TOL);
 	}
 	
-	//TODO Add at least one test for the "typical" case: vectors larger than 1.
-	// Please don't copy my tests. You don't need random numbers (not a good idea
-	// because test results may not be reproducable).
+	@Test
+	public void testDotProductTypicalVectors() {
+		double[] x = {1,0,-4,8};
+		double[] y = {1,2,-1,-5};
+		double expected = 0;
+		for(int i = 0; i < x.length; i++) {
+			expected += x[i]*y[i];
+		}
+		assertEquals( expected, ArrayMath.dotProduct(x, y), TOL);
+		assertEquals( expected, ArrayMath.dotProduct(y, x), TOL);
+	}
 
 	@Test
 	public void testDotProductHugeVectors() {
@@ -49,16 +57,11 @@ public class ArrayMathTest {
 		assertEquals( product, ArrayMath.dotProduct(y, x), TOL);
 	}
 
-	/** 
-	 * This test should throw an exception,
-	 * but not after you change the spec for dotProduct!
-	 */
 	@Test(expected=java.lang.IllegalArgumentException.class)
 	public void testDotProductLengthsNotSame() {
 		double[] x = new double[] {1, 3, 5, 7, 9};
 		double[] y = new double[] {-2, 0.5, 4};
-		assertEquals( 19.5, ArrayMath.dotProduct(x, y), TOL);
-		assertEquals( 19.5, ArrayMath.dotProduct(y, x), TOL);
+		ArrayMath.dotProduct(x, y);
 	}
 
 }
