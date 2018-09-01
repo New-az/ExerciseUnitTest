@@ -16,6 +16,6 @@ public class StringUtil {
 		for(int k=0; k<array.length; k++) {
 			if (array[k].equals(arg)) return k;
 		}
-		return -1;
+		return index;
 	}
 }
