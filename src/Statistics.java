@@ -17,9 +17,10 @@ public class Statistics {
 	public static double average(double[] x) {
 		// Some fun: sum using a Stream instead of a loop.
 		if (x == null) throw new NullPointerException();
-		if (x.length == 0) return 0;
+		int length = x.length;
+		if (length == 0) return 0;
 		double sum = Arrays.stream(x).sum();
-		return sum/x.length;
+		return sum/length;
 	}
 	
 	/**
@@ -32,14 +33,14 @@ public class Statistics {
 	 */
 	public static double variance(double[] x) {
 		double sum = 0;
-		int n = x.length;
+		int length = x.length;
 		
-		if (n == 0) throw new IllegalArgumentException();
+		if (length == 0) throw new IllegalArgumentException();
 		
-		for(int i=0; i<n; i++)
+		for(int i=0; i<length; i++)
 			sum = sum + (x[i]*x[i]);
 		
-		return sum/n - Math.pow(average(x), 2);
+		return sum/length - Math.pow(average(x), 2);
 	}
 	
 	/**
@@ -61,22 +62,22 @@ public class Statistics {
 	 * @throws IllegalArgumentException if arrays are not same length or length is 0.
 	 */
 	public static double covariance(double[] x, double[] y) {
-		int lenX = x.length;
-		int lenY = y.length;
+		int lengthX = x.length;
+		int lengthY = y.length;
 		double sum = 0;
 		
-		if(lenX != lenY || lenX == 0 || lenY == 0) throw new IllegalArgumentException();
+		if(lengthX != lengthY || lengthX == 0 || lengthY == 0) throw new IllegalArgumentException();
 	
 		if(Arrays.equals(x, y)) return variance(x);
 		
 		double avgX = average(x);
 		double avgY = average(y);
 		
-		for(int i=0; i<lenX; i++) {
+		for(int i=0; i<lengthX; i++) {
 			sum = sum + ( (x[i] - avgX) * (y[i] - avgY) );
 		}
 		
-		return sum/(lenX-1);
+		return sum/(lengthX-1);
 	}
 	
 }
