@@ -19,14 +19,22 @@ public class StringUtilTest {
 	}
 	
 	@Test
-	public void testLetters() {
-		String[] name = {"SKE","fathalajon","ISP"};
+	public void testFailCase() {
+		String[] name = {"SKE"};
 		assertEquals(-1, StringUtil.indexOf("ske", name) );
-		assertEquals(1, StringUtil.indexOf("fathalajon", name) );
-		assertEquals(2, StringUtil.indexOf("isp".toUpperCase(), name) );
 	}
 	
+	@Test 
+	public void testEmptyCase() {
+		String[] empty = {};
+		assertEquals(-1,StringUtil.indexOf("", empty));
+	}
 	
-
-	//TODO write more tests. Test other cases.
+	@Test
+	public void testAllIndexOf() {
+		String[] fruit = {"Apple", "Banana", "Grapes", "ORANGE", "mango"};
+		for(int i = 0 ; i < fruit.length ; i++) {
+			assertEquals(i, StringUtil.indexOf(fruit[i], fruit));
+		}
+	}
 }
