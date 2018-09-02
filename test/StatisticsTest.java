@@ -1,8 +1,5 @@
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-
-import org.junit.Before;
 import org.junit.Test;
 
 public class StatisticsTest {
@@ -39,6 +36,11 @@ public class StatisticsTest {
 		assertEquals(0, Statistics.average(x), TOL);
 	}
 	
+	@Test (expected = NullPointerException.class)
+	public void testAverageException() {
+		Statistics.average(null);
+	}
+	
 	@Test
 	public void testAverageLargeArray() {
 		double[] x = new double[1000];
@@ -58,7 +60,7 @@ public class StatisticsTest {
 	}	
 	
 	@Test
-	public void testVarianceTinyArray() {
+	public void testVarianceArray() {
 		double[] x = {123.01, 234.56};
 		assertEquals(3110.850625, Statistics.variance(x), TOL);
 		
@@ -72,7 +74,7 @@ public class StatisticsTest {
 	}
 	
 	@Test
-	public void testTinyCovariance() {
+	public void testCovariance() {
 		double[] x = {123.4, 456.7};
 		double[] y = {650.2, 244.2};
 		
@@ -95,6 +97,17 @@ public class StatisticsTest {
 		
 		java.util.Arrays.fill(y, 24.1);
 		Statistics.covariance(new double[0], y);
+	}
+	
+	@Test
+	public void testIsVariance() {
+		double[] x = {25.6, 27.8};
+		double[] y = {25.6, 27.8};
+		assertEquals(1.21, Statistics.covariance(x, y), TOL);
+		
+		double[] a = {12.56, 88.96};
+		double[] b = {88.96, 12.56};
+		assertNotEquals(1459.24, Statistics.covariance(a, b), TOL);
 	}
 
 }

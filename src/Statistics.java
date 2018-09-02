@@ -66,6 +66,8 @@ public class Statistics {
 		double sum = 0;
 		
 		if(lenX != lenY || lenX == 0 || lenY == 0) throw new IllegalArgumentException();
+	
+		if(Arrays.equals(x, y)) return variance(x);
 		
 		double avgX = average(x);
 		double avgY = average(y);
