@@ -1,8 +1,6 @@
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Some utility methods for Strings.
+ * @author Vichakorn
  */
 public class StringUtil {
 	/**

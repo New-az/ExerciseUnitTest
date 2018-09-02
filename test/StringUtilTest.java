@@ -1,10 +1,10 @@
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 
 /**
  * Tests of the StringUtil methods.
+ * @author Vichakorn
  */
 public class StringUtilTest {
 
