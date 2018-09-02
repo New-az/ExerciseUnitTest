@@ -1,6 +1,5 @@
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class StatisticsTest {
@@ -31,11 +30,84 @@ public class StatisticsTest {
 		assertEquals( avg, Statistics.average(x), TOL);
 	}
 	
-	//TODO add test cases:
-	//1. slightly illegal case. What if array is empty?
-	//2. extrame case: very large array or very different values
+	@Test
+	public void testAverageArrayEmpty() {
+		double[] x = new double[0];
+		assertEquals(0, Statistics.average(x), TOL);
+	}
 	
-	//TODO add test for variance.
-	// What are test cases?
+	@Test (expected = NullPointerException.class)
+	public void testAverageException() {
+		Statistics.average(null);
+	}
+	
+	@Test
+	public void testAverageLargeArray() {
+		double[] x = new double[1000];
+		java.util.Arrays.fill(x, 123.8);
+		assertEquals(123.8, Statistics.average(x), TOL);
+	}
+	
+	@Test
+	public void testAverageDifferentValue() {
+		double[] x = new double[5];
+		x[0] = 10.5;
+		x[1] = 2001.3;
+		x[2] = 300.24;
+		x[3] = 9845.9;
+		x[4] = 1243.77;
+		assertEquals(2680.342, Statistics.average(x), TOL);
+	}	
+	
+	@Test
+	public void testVarianceArray() {
+		double[] x = {123.01, 234.56};
+		assertEquals(3110.850625, Statistics.variance(x), TOL);
+		
+		double[] y = {777.9};
+		assertEquals(0, Statistics.variance(y), TOL);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testVarianceArrayEmpty() {
+		Statistics.variance(new double[0]);
+	}
+	
+	@Test
+	public void testCovariance() {
+		double[] x = {123.4, 456.7};
+		double[] y = {650.2, 244.2};
+		
+		assertEquals(-67659.9, Statistics.covariance(x, y), TOL);
+		
+		double[] a = {985.1, 1002.7};
+		double[] b = {203.45, 20.9};
+		
+		assertEquals(-1606.44, Statistics.covariance(a, b), TOL);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testConvarianceException() {
+		double[] x = new double[2];
+		double[] y = new double[5];
+		Statistics.covariance(x, y);
+		
+		java.util.Arrays.fill(x, 15.3);
+		Statistics.covariance(x, new double[0]);
+		
+		java.util.Arrays.fill(y, 24.1);
+		Statistics.covariance(new double[0], y);
+	}
+	
+	@Test
+	public void testIsVariance() {
+		double[] x = {25.6, 27.8};
+		double[] y = {25.6, 27.8};
+		assertEquals(1.21, Statistics.covariance(x, y), TOL);
+		
+		double[] a = {12.56, 88.96};
+		double[] b = {88.96, 12.56};
+		assertNotEquals(1459.24, Statistics.covariance(a, b), TOL);
+	}
 
 }
