@@ -47,7 +47,7 @@ public class Statistics {
 	 * Compute the covariance between arrays x and y.
 	 * The covariance is defined by
 	 * 
-	 * sum[ (x[k] - average(x)) * (y[k] - average(y)) ]/(n - 1)
+	 * sum[ (x[k] - average(x)) * (y[k] - average(y)) ]/n
 	 * where n is number of elements in the arrays.
 	 * 
 	 * But it is more efficient to compute using the equivalent formula:
@@ -77,7 +77,7 @@ public class Statistics {
 			sum = sum + ( (x[i] - avgX) * (y[i] - avgY) );
 		}
 		
-		return sum/(lengthX-1);
+		return sum/lengthX;
 	}
 	
 }
