@@ -78,12 +78,12 @@ public class StatisticsTest {
 		double[] x = {123.4, 456.7};
 		double[] y = {650.2, 244.2};
 		
-		assertEquals(-67659.9, Statistics.covariance(x, y), TOL);
+		assertEquals(-33829.95, Statistics.covariance(x, y), TOL);
 		
 		double[] a = {985.1, 1002.7};
 		double[] b = {203.45, 20.9};
 		
-		assertEquals(-1606.44, Statistics.covariance(a, b), TOL);
+		assertEquals(-803.22, Statistics.covariance(a, b), TOL);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
